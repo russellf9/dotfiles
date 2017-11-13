@@ -1,0 +1,5 @@
+[user]
+	name = russellwenban
+	email = russell.wenban@qudini.com
+[url "https://"]
+	insteadOf = git://
