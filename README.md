@@ -8,7 +8,7 @@ Looking at learning on how to set up a fast way to set up a new computer with a 
 
 I've created a structure like [Getting Started With Dotfiles](https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789)
 
-I'm still working on setting up commands to fullu automate the task.
+I'm still working on setting up commands to fully automate the task.
 
 ## Installation
 
@@ -29,9 +29,47 @@ sh brew.sh
 
 ```
 
+Qudini Specific
+
+Open jira
+
+https://jira.qudini.com
+
+Verify with qudini google password
+
+find wiki
+
+https://bitbucket.org/qudini/qudiniapp
+
+
+Bitbucket login with Qudini Google Password as well
+
+
+## Applications
+
+n
+
+node
+
+
+
+Chrome
+
+Firefox
+
+Postman
+
+Java
+
+Slack
+
+
+
+
+
 
 ## More links
 
 [garystevens - dotfiles](https://github.com/garystevens/dotfiles)
 
-[using-git-and-github-to-manage-your-dotfiles](using-git-and-github-to-manage-your-dotfiles)
+[using-git-and-github-to-manage-your-dotfiles](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/)
