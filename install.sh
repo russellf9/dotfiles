@@ -16,5 +16,5 @@ echo "...done"
 
 # .bash_profile
 
-# cp $dir/runcom/.bash_profile ~/.bash_profile
+cp $dir/runcom/.bash_profile ~/.bash_profile
 echo "...done"

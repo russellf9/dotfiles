@@ -26,6 +26,10 @@ cd ~/install
 
 sh brew.sh
 
+# could do it like so:
+
+brew cask install evernote atom firefox sequel-pro web storm zeplin postman
+
 
 ```
 
