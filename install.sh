@@ -2,9 +2,9 @@
 
 ########## Variables
 
-dir=~/dotfiles                     # dotfiles directory
-olddir=~/dotfiles_old              # old dotfiles backup directory
-files="gitconfig bash_profile script"     # list of files to symlink
+dir=~/dotfiles                              # dotfiles directory
+olddir=~/dotfiles_old                       # old dotfiles backup directory
+files="gitconfig bash_profile scripts"      # list of files to symlink
 
 
 # create dotfiles_old in homedir
@@ -13,24 +13,31 @@ mkdir -p $olddir
 echo "...done"
 
 
-
 # move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     echo ~/.$file
     cp  ~/.$file $olddir/.$file
+    echo "Moving files and directries to ~"
+    cp  $dir/.$file ~/.$file
     echo "...done"
 done
 
 
-# Simply Copy the .bash_profile and gitconfig over
-echo "Moving files to home directory"
-    cp $dir/runcom/.bash_profile ~/.bash_profile
-    cp $dir/git/.gitconfig ~/.gitconfig
-=======
+# Install Node Package Manager
+curl -L https://git.io/n-install | bash
 
-# .bash_profile
+echo "Installing Node"
 
-cp $dir/runcom/.bash_profile ~/.bash_profile
->>>>>>> f1c7c6d1c036e8793afd3be99d1e6493a76f0af6
-echo "...done"
+# will need to `reset` before setting specific version of Node
+. ~/.bash_profile
+n 6.11.3
+
+
+# Install Brew to install Applications
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo "Installing Applications"
+
+brew install 'sql sbt'
+brew cask install 'firefox google-chrome postman evernote atom webstorm zeplin slack sequel-pro'
