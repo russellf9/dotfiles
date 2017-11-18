@@ -88,7 +88,6 @@ function setjdk() {
   export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
  }
 
-
 open_bash () {
 	atom ~/.bash_profile
 }
@@ -97,7 +96,6 @@ open_bash () {
 move_screenshots() {
 	mv ~/Desktop/*.{png,jpg,JPG} ~/Documents/qudini/qudini-screenshots
 }
-
 
 delete_all_downloads() {
 	find ~/Downloads/ -maxdepth 1 -type f -delete
