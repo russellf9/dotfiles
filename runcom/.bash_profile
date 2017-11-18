@@ -1,44 +1,28 @@
-#export PATH=$PATH:/Applications/sdk/tools:/Applications/sdk/platform-tools:$PATH
-#export PATH=$PATH:/Applications/gradle-1.8/bin:$PATH
-#export PATH=$PATH:/Applications/gradle-1.8/bin:$PATH
-#export PATH=$PATH:/Applications/MAMP/Library/bin/mysql:$PATH
-#ANDROID_HOME=/Applications/sdk/
-#GRADLE_HOME=/Applications/gradle-1.8/bin
-#QEO_HOME=/Users/factornine/localhosts/www.i-speak-qeo.com/QeoSDK-0.15.0
-JAVA_HOME=$(/usr/libexec/java_home)export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/bin:$PATH
+
 
 # usage `setjdk 1.8`
-function setjdk() {  
-  if [ $# -ne 0 ]; then  
-   removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'  
-   if [ -n "${JAVA_HOME+x}" ]; then  
-    removeFromPath $JAVA_HOME/bin  
-   fi  
-   export JAVA_HOME=`/usr/libexec/java_home -v $@`  
-   export PATH=$JAVA_HOME/bin:$PATH  
-  fi  
- }  
- function removeFromPath() {  
-  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
+function setjdk() {
+  if [ $# -ne 0 ]; then
+   removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+   if [ -n "${JAVA_HOME+x}" ]; then
+    removeFromPath $JAVA_HOME/bin
+   fi
+   export JAVA_HOME=`/usr/libexec/java_home -v $@`
+   export PATH=$JAVA_HOME/bin:$PATH
+  fi
  }
-setjdk 1.7i
+ function removeFromPath() {
+  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
+ }
+
 
 #play
-alias play='/Applications/play-1.4.2/play'
+alias play='/Applications/play-1.4.4/play'
 
-
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-function searchAndDestroy() {
-
-  lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
-
-  echo "Port" $1 "found and killed."
-
-}
+# alias
+alias l="ls -la"       # List in long format, include dotfiles
+alias ld="ls -ld */"   # List in long format, only directories
+alias week='date +%V' # Get week number
 
 
 # kill all application running on a specified port.
@@ -55,28 +39,20 @@ kill_port() {
 }
 
 
-# qudini
+# qudini functions
 
 run_qudiniapp() {
-		setjdk 1.8
-		
     kill_port 8080
     kill_port 4443
-
-    killall memcached
-    memcached &
-    sleep 3
+    brew services restart memcached
     play run -DuseTestDataFixtures=true
 }
 
 auto_test_qudiniapp() {
     # Changing the DB test configuration here can be easier than maintaining
     # a divergent configuration file in the Git repo.
-
     kill_port 9000
-    killall memcached
-    memcached &
-    sleep 3
+    brew services restart memcached
     play auto-test \
             -Dtestdb=mysql://qudini:qudini@localhost/qudini \
             -DuseTestDataFixtures=true
@@ -85,9 +61,8 @@ auto_test_qudiniapp() {
 test_qudiniapp() {
     # Changing the DB test configuration here can be easier than maintaining
     # a divergent configuration file in the Git repo.
-		setjdk 1.8
-		
     kill_port 9000
+    brew services restart memcached
     play test \
             -Dtestdb=mysql://qudini:qudini@localhost/qudinitest3
 }
@@ -118,7 +93,7 @@ unstage_built_frontend_files() {
 }
 
 open_bash () {
-	open -a TextMate  /Users/factornine/.bash_profile
+	atom ~/.bash_profile
 }
 
 # TODO make list case insensitive
@@ -136,38 +111,40 @@ empty_trash() {
 }
 
 sbt() {
-	setjdk 1.8
    "$(which sbt)" "$@" -Dsbt.ivy.home="$HOME"/play-2-sbt-home
 }
 
-
-#
-alias github=GitHub
-
-function GitHub()
-{
-    if [ ! -d .git ] ; 
-        then echo "ERROR: This isnt a git directory" && return false; 
-    fi
-    git_url=`git config --get remote.origin.url`
-    if [[ $git_url != https://github* ]] ;
-        then echo "ERROR: Remote origin is invalid" && return false;
-    fi
-    url=${git_url%.git}
-    open $url
+# Determine size of a file or total size of a directory
+function fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* ./*;
+	fi;
 }
 
+# Create a new directory and enter it
+function mk() {
+  mkdir -p "$@" && cd "$@"
+}
+# Open man page as PDF
+function manpdf() {
+ man -t "${1}" | open -f -a /Applications/Preview.app/
+}
 
+# Update App Store apps
+function updateApps() {
+  sudo softwareupdate -i -a
+}
 
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
-#export PATH="/usr/local/mysql/bin:$PATH"
-export PATH="/Library/Ruby/Gems/2.0.0/gems/sass-3.4.13/bin:/Users/factornine/.gem/ruby/2.3.0/bin:/Applications/activator-1.3.12-minimal/bin:/Users/factornine/.gem/ruby/2.0.0/bin:/usr/local/mysql/bin:$PATH"
+export PATH="$(ruby -e 'puts Gem::user_dir')/bin:$PATH"
 
 # Add Vim Key bindings
 # set -o vi
 # set keymap vi-command
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# For RVM see https://rvm.io/help
-source ~/.profile

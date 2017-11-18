@@ -26,6 +26,10 @@ cd ~/install
 
 sh brew.sh
 
+# could do it like so:
+
+brew cask install evernote atom firefox sequel-pro web storm zeplin postman
+
 
 ```
 
@@ -72,4 +76,8 @@ Slack
 
 [garystevens - dotfiles](https://github.com/garystevens/dotfiles)
 
+<<<<<<< HEAD
 [using-git-and-github-to-manage-your-dotfiles](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/)
+=======
+[using-git-and-github-to-manage-your-dotfiles](using-git-and-github-to-manage-your-dotfiles)
+>>>>>>> f1c7c6d1c036e8793afd3be99d1e6493a76f0af6
