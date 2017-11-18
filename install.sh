@@ -4,7 +4,7 @@
 
 dir=~/dotfiles                              # dotfiles directory
 olddir=~/dotfiles_old                       # old dotfiles backup directory
-files="gitconfig bash_profile scripts"      # list of files to symlink
+files="gitconfig bash_profile scripts"      # list of files/directories to move
 
 
 # create dotfiles_old in homedir
@@ -14,6 +14,7 @@ echo "...done"
 
 
 # move any existing dotfiles in homedir to dotfiles_old directory
+# move files and direcrtories from the dot folder to the home folder
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     echo ~/.$file
@@ -31,6 +32,7 @@ echo "Installing Node"
 
 # will need to `reset` before setting specific version of Node
 . ~/.bash_profile
+
 n 6.11.3
 
 
@@ -39,5 +41,5 @@ n 6.11.3
 
 echo "Installing Applications"
 
-brew install 'sql sbt'
-brew cask install 'firefox google-chrome postman evernote atom webstorm zeplin slack sequel-pro'
+brew install 'sql sbt python3'
+brew cask install 'firefox google-chrome postman evernote atom webstorm slack zeplin slack sequel-pro'
