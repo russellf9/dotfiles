@@ -1,6 +1,12 @@
-# alias
 
+
+
+
+
+#play
 alias play='/Applications/play-1.4.4/play'
+
+# alias
 alias l="ls -la"       # List in long format, include dotfiles
 alias ld="ls -ld */"   # List in long format, only directories
 alias week='date +%V' # Get week number
@@ -73,21 +79,6 @@ unstage_built_frontend_files() {
         | xargs git reset >/dev/null
 }
 
-# usage `setjdk 1.8`
-function setjdk() {
-  if [ $# -ne 0 ]; then
-   removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'
-   if [ -n "${JAVA_HOME+x}" ]; then
-    removeFromPath $JAVA_HOME/bin
-   fi
-   export JAVA_HOME=`/usr/libexec/java_home -v $@`
-   export PATH=$JAVA_HOME/bin:$PATH
-  fi
- }
- function removeFromPath() {
-  export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
- }
-
 open_bash () {
 	atom ~/.bash_profile
 }
@@ -96,6 +87,7 @@ open_bash () {
 move_screenshots() {
 	mv ~/Desktop/*.{png,jpg,JPG} ~/Documents/qudini/qudini-screenshots
 }
+
 
 delete_all_downloads() {
 	find ~/Downloads/ -maxdepth 1 -type f -delete
@@ -139,3 +131,7 @@ function updateApps() {
 
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export PATH="$(ruby -e 'puts Gem::user_dir')/bin:$PATH"
+
+# Add Vim Key bindings
+# set -o vi
+# set keymap vi-command

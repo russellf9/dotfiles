@@ -1,5 +1,13 @@
 [user]
-	name = Russell Wenban
-	email = russell@factornine.co.uk
-[url "https://"]
-	insteadOf = git://
+	name = russellwenban
+	email = russell.wenban@qudini.com
+[alias]
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+	cp = cherry-pick
+	st = status -s
+	cl = clone
+	ci = commit
+	co = checkout
+	br = branch
+	diff = diff --word-diff
+	dc = diff --cached
