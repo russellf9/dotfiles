@@ -1,6 +1,7 @@
 # dotfiles
 My personal OSX installation system.
 
+
 ## Description
 
 I was reading [Getting Started With Dotfiles](https://medium.com/@webprolific/getting-started-with-dotfiles-43c3602fd789) and was inspired to create a configuration that would automate the setting up of a new OSX machine.
@@ -14,13 +15,17 @@ Using [brew](https://brew.sh/) and [n-install](https://github.com/mklement0/n-in
 
 ## Installation
 
+Personalise the `name` and `email` fields in the git/.gitconfig file.
+
+Add or remove applications in the install.sh/brew install and brew cask install tasks.
+
+Available brew applications can be found by running `brew search (app-name)` or `brew cask search (app-name)`
+
+
 Run the following commands and respond to prompts.
 
 ```
 cd ~
-
-# This will also install git
-xcode-select --install
 
 git checkout https://github.com/russellf9/dotfiles.git
 
@@ -29,6 +34,27 @@ cd dotfile
 sh install.sh
 
 ```
+
+**Notes:**
+
+The default OSX comes with versions of _git_ and _bash_ and the `brew cask install` task updates them.
+
+
+## Summary of shortcuts which will be installed
+
+`l`  - List in long format, include dotfiles
+`ld`-  List in long format, only directories
+`week` -  Get week number
+`open_bash` - Will open the .bash_profile
+`mk` - Create a new directory and enter it
+`fs` - Determine size of a file or total size of a directory
+`manpdf` - Open a terminal manual page as a PDF - `manpdf ls`
+`updateApps` - Update App Store apps
+`delete_all_downloads` - Deletes all files in `~/Downloads/`
+`empty_trash` - Empties the trash
+
+
+
 
 
 ## Webstorm Settings

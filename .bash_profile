@@ -1,12 +1,5 @@
-
-
-
-
-
-#play
-alias play='/Applications/play-1.4.4/play'
-
 # alias
+alias play='/Applications/play-1.4.4/play'
 alias l="ls -la"       # List in long format, include dotfiles
 alias ld="ls -ld */"   # List in long format, only directories
 alias week='date +%V' # Get week number
