@@ -1,5 +1,6 @@
 # alias
-alias play='/Applications/play-1.4.4/play'
+alias play='/Applications/play-1.5.0/play'
+
 alias l="ls -la"       # List in long format, include dotfiles
 alias ld="ls -ld */"   # List in long format, only directories
 alias week='date +%V' # Get week number
@@ -73,7 +74,12 @@ unstage_built_frontend_files() {
 }
 
 open_bash () {
-	atom ~/.bash_profile
+	code ~/.bash_profile
+}
+
+# Simply refreshes the Bash profile
+function reload_bash_profile() {
+    . ~/.bash_profile
 }
 
 # TODO make list case insensitive

@@ -42,24 +42,20 @@ The default OSX comes with versions of _git_ and _bash_ and the `brew cask insta
 
 ## Summary of shortcuts which will be installed
 
-`l`  - List in long format, include dotfiles
-`ld`-  List in long format, only directories
-`week` -  Get week number
-`open_bash` - Will open the .bash_profile
-`mk` - Create a new directory and enter it
-`fs` - Determine size of a file or total size of a directory
-`manpdf` - Open a terminal manual page as a PDF - `manpdf ls`
-`updateApps` - Update App Store apps
-`delete_all_downloads` - Deletes all files in `~/Downloads/`
-`empty_trash` - Empties the trash
+* `l`  - List in long format, include dotfiles
+* `ld`-  List in long format, only directories
+* `week` -  Get week number
+* `week` -  Get week number
+* `open_bash` - Will open the .bash_profile
+* `reload_bash_profile` - Refreshes the Bash profile without opening a new Terminal window
+* `mk` - Create a new directory and enter it
+* `fs` - Determine size of a file or total size of a directory
+* `manpdf` - Open a terminal manual page as a PDF - `manpdf ls`
+* `updateApps` - Update App Store apps
+* `delete_all_downloads` - Deletes all files in `~/Downloads/`
+* `empty_trash` - Empties the trash
 
 
-
-
-
-## Webstorm Settings
-
-I'm using [Settings Repository](https://plugins.jetbrains.com/plugin/7566-settings-repository) to save my Webstorm configuration across my home and work machines and this is working well so far.
 
 
 ## Links
