@@ -24,22 +24,23 @@ for file in $files; do
     echo "...done"
 done
 
-
-# Install Node Package Manager
-curl -L https://git.io/n-install | bash
-
-echo "Installing Node"
-
-# will need to `reset` before setting specific version of Node
-. ~/.bash_profile
-
-n 6.11.3
-
+# Java - Install using Brew
+# Run `brew cask list` to see if Java was installed by Brew
+# Run `java -version` to see if Java is installed
+# If Java exists on your system but is not listed by brew cask list
+# Uninstall it by following the instructions here: https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html#A1096903
 
 # Install Brew to install Applications
+# (Begs the question if Brew was originally installed should it be removed?)
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "Installing Applications"
 
-brew install 'sql sbt python3'
-brew cask install 'firefox google-chrome postman evernote atom webstorm slack zeplin slack sequel-pro'
+# Uncomment if `brew cask list` finds Java
+# brew cask uninstall java
+
+brew install 'nvm sql sbt python3 doptopenjdk adoptopenjdk8'
+brew cask install 'firefox google-chrome postman evernote atom webstorm slack zeplin slack sequel-pro 1password'
+
+# Now using Node Version Manager rather than n
+nvm install 8.10.0

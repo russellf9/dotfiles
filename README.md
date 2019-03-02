@@ -40,6 +40,12 @@ sh install.sh
 The default OSX comes with versions of _git_ and _bash_ and the `brew cask install` task updates them.
 
 
+## Text-Editing Rocket
+
+I've set up my machine with to use a whole set of text editing features from [Turn Your Keyboard into a Text-Editing Rocket](https://medium.com/@caulfieldOwen/turn-your-keyboard-into-a-text-editing-rocket-1514d8474d2d). So I've added Hammerspoon and Karabiner-Elements to the brew task in the shell script. Also a `hyper-apps.lua` file which contains my App shortcuts for Hammerspoon.
+
+
+
 ## Summary of shortcuts which will be installed
 
 * `l`  - List in long format, include dotfiles
@@ -68,6 +74,7 @@ The default OSX comes with versions of _git_ and _bash_ and the `brew cask insta
 ## Caveats
 
 The script has only been partially tested and this is very much a version 1!
+
 Feel free to fork and comment or raise issues.
 
 ## Contact
