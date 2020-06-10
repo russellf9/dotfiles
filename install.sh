@@ -4,7 +4,7 @@
 
 dir=~/dotfiles                              # dotfiles directory
 olddir=~/dotfiles_old                       # old dotfiles backup directory
-files="gitconfig bash_profile scripts"      # list of files/directories to move
+files="gitconfig hammerspoon vim vimrc bash_profile zshrc"      # list of files/directories to move
 
 
 # create dotfiles_old in homedir
@@ -24,23 +24,70 @@ for file in $files; do
     echo "...done"
 done
 
-# Java - Install using Brew
-# Run `brew cask list` to see if Java was installed by Brew
-# Run `java -version` to see if Java is installed
-# If Java exists on your system but is not listed by brew cask list
-# Uninstall it by following the instructions here: https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html#A1096903
+# Check for Homebrew, install if we don't have it
+if test ! $(which brew); then
+    echo "Installing homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
-# Install Brew to install Applications
-# (Begs the question if Brew was originally installed should it be removed?)
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Update homebrew recipes
+brew update
 
-echo "Installing Applications"
 
-# Uncomment if `brew cask list` finds Java
-# brew cask uninstall java
+# Install GNU core utilities (those that come with OS X are outdated)
+brew tap homebrew/dupes
+brew install coreutils
+brew install gnu-sed --with-default-names
+brew install gnu-tar --with-default-names
+brew install gnu-indent --with-default-names
+brew install gnu-which --with-default-names
+brew install gnu-grep --with-default-names
 
-brew install 'nvm sql sbt python3 doptopenjdk adoptopenjdk8'
-brew cask install 'firefox google-chrome postman evernote atom webstorm slack zeplin slack sequel-pro 1password'
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+brew install findutils
 
-# Now using Node Version Manager rather than n
-nvm install 8.10.0
+# Install Bash 4 (I've added this from the [codeinthehole](https://gist.github.com/codeinthehole/osx_bootstrap.sh) repo and I'm not 100% sure it's required)
+brew install bash
+
+
+PACKAGES=(
+    docker
+    hammerspoon
+    iterm2
+    karabiner
+    karabiner-elements
+    visual-studio-code
+    vlc
+    zoom
+    zsh
+)
+echo "Installing packages..."
+brew install ${PACKAGES[@]}
+
+echo "Cleaning up..."
+brew cleanup
+
+echo "Installing cask..."
+brew install caskroom/cask/brew-cask
+
+CASKS=(
+    1password
+    atom
+    evernote
+    firefox
+    google-chrome
+    postman
+    slack
+    zeplin
+)
+
+echo "Installing cask apps..."
+brew cask install ${CASKS[@]}
+
+echo "Installing NVM"
+# Now using Node Version Manager rather than n (I'm not 100% that we don't have to cd to another directory)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+
+echo "Installing oh my zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended

@@ -1,6 +1,3 @@
-# alias
-alias play='/Applications/play-1.5.0/play'
-
 alias l="ls -la"       # List in long format, include dotfiles
 alias ld="ls -ld */"   # List in long format, only directories
 alias week='date +%V' # Get week number
@@ -17,35 +14,6 @@ kill_port() {
     else
         kill -9 $pids
     fi
-}
-
-
-# qudini functions
-
-run_qudiniapp() {
-    kill_port 8080
-    kill_port 4443
-    brew services restart memcached
-    play run -DuseTestDataFixtures=true
-}
-
-auto_test_qudiniapp() {
-    # Changing the DB test configuration here can be easier than maintaining
-    # a divergent configuration file in the Git repo.
-    kill_port 9000
-    brew services restart memcached
-    play auto-test \
-            -Dtestdb=mysql://qudini:qudini@localhost/qudini \
-            -DuseTestDataFixtures=true
-}
-
-test_qudiniapp() {
-    # Changing the DB test configuration here can be easier than maintaining
-    # a divergent configuration file in the Git repo.
-    kill_port 9000
-    brew services restart memcached
-    play test \
-            -Dtestdb=mysql://qudini:qudini@localhost/qudinitest3
 }
 
 recent_remote_branches() {
@@ -96,10 +64,6 @@ empty_trash() {
 	rm -rf ~/.Trash/*rv
 }
 
-sbt() {
-   "$(which sbt)" "$@" -Dsbt.ivy.home="$HOME"/play-2-sbt-home
-}
-
 # Determine size of a file or total size of a directory
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
@@ -131,6 +95,4 @@ function updateApps() {
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export PATH="$(ruby -e 'puts Gem::user_dir')/bin:$PATH"
 
-# Add Vim Key bindings
-# set -o vi
-# set keymap vi-command
+export GITHUB_PACKAGES_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXXX

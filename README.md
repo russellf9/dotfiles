@@ -10,12 +10,17 @@ I wanted to learn from the ground up so I simplified the process outlined by [La
 
 My simpler structure has a `.bash_profile` which contains the functions and alias rather than them being in separate files.
 
-Using [brew](https://brew.sh/) and [n-install](https://github.com/mklement0/n-install#n-install-&mdash-introduction) to install [n (Node Version Manager)](https://www.npmjs.com/package/n) I managed to get the installation script down to just a few lines.
-
+Added some improvements from [codeinthehole/osx_bootstrap.sh](https://gist.github.com/codeinthehole/26b37efa67041e1307db).
 
 ## Installation
 
+Install XCode first from the App Store so Homebrew can access the libraries.
+
+Some apps don't have a cask and so still need to be installed by hand, including Twitter.
+
+
 Personalise the `name` and `email` fields in the git/.gitconfig file.
+
 
 Add or remove applications in the install.sh/brew install and brew cask install tasks.
 
@@ -34,6 +39,27 @@ cd dotfile
 sh install.sh
 
 ```
+## Update 9 June 2020
+
+I'm in the process of bootstrapping a new Mac Book and am trying to update the scripts etc first.
+
+- [X] Use NVM rather than n (and don't install using brew)
+- [X] Add an improvement so we check for the existence of Homebrew before installing it.
+- [X] Make a note to install X-Code manually first
+- [X] Update the `bash_profile` with new snippets etc...
+- [X] Update links and information 
+- [X] Oh-My-Zsh 
+- [X] add `zsh` to brew
+- ~[ ] Update Hammerspoon file~
+- [ ] See if the copy part for the Hammerspoon file works (if not make script)
+- [X] Update Karibiner-Elements Key Binding file if possible. (Is in `.keyboard` location)
+- [X] Vimrc 
+- [X] and other Vim files and folders
+- [ ] Update .gitconfig? (see later)
+- [X] Remove Qudini specific stuff
+- [ ] Add global NPM modules to script
+- [ ] Remove .idea folder (run script first to test how the script works)
+- [ ] Make script to copy Hammerspoon file (see `hyper-apps.sh`)
 
 **Notes:**
 
@@ -50,7 +76,6 @@ I've set up my machine with to use a whole set of text editing features from [Tu
 
 * `l`  - List in long format, include dotfiles
 * `ld`-  List in long format, only directories
-* `week` -  Get week number
 * `week` -  Get week number
 * `open_bash` - Will open the .bash_profile
 * `reload_bash_profile` - Refreshes the Bash profile without opening a new Terminal window
